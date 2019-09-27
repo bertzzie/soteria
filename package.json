@@ -1,0 +1,17 @@
+{
+  "name": "soteria",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "Benchmarking several front-end sites with lighthouse",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "gradle build",
+    "start": "NODE_PATH=dist node dist/index.js"
+  },
+  "author": "Alex Xandra Albert Sim <bertzzie@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "kotlin": "^1.3.50",
+    "lighthouse": "^5.4.0"
+  }
+}
