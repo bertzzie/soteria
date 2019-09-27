@@ -40,9 +40,9 @@ fun benchmark(url: String): Promise<LighthouseResult> {
             lighthouse(url, lhOptions).then { results ->
                 chrome.kill().then { _ -> results.report }
             }
-                .then { result ->
-                    val json = Json.nonstrict
-                    json.parse(LighthouseResult.serializer(), result as String)
-                }
+            .then { result ->
+                val json = Json.nonstrict
+                json.parse(LighthouseResult.serializer(), result as String)
+            }
         } as Promise<LighthouseResult>
 }
