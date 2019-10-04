@@ -1,5 +1,6 @@
 package tech.namas.benchmark.frontend.functions
 
+import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import tech.namas.benchmark.frontend.chromeLauncher
 import tech.namas.benchmark.frontend.lighthouse
@@ -9,6 +10,7 @@ import tech.namas.benchmark.frontend.models.LightHouseOptions
 import tech.namas.benchmark.frontend.models.LighthouseResult
 import kotlin.js.Promise
 
+@UnstableDefault
 fun benchmarks(urls: Array<String>): Promise<Array<out LighthouseResult>> {
     val firstResult = benchmark(urls.first())
         .then { result -> arrayOf(result) }
@@ -27,6 +29,7 @@ fun benchmarks(urls: Array<String>): Promise<Array<out LighthouseResult>> {
     }
 }
 
+@UnstableDefault
 fun benchmark(url: String): Promise<LighthouseResult> {
     val chromeOptions = ChromeOptions(chromeFlags = arrayOf("--headless"))
 

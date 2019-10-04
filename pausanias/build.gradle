@@ -1,0 +1,29 @@
+compileKotlin2Js.kotlinOptions {
+    outputFile = "${projectDir}/dist/index.js"
+    moduleKind = "commonjs"
+    sourceMap = true
+}
+
+clean {
+    delete new File("$projectDir/$web_path")
+}
+
+build.doLast {
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+
+            from zipTree(file.absolutePath)
+            into "${projectDir}/$web_path"
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+            }
+        }
+    }
+
+    copy {
+        from sourceSets.main.resources.srcDirs
+        into "${projectDir}/dist"
+    }
+}

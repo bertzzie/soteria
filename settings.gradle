@@ -1,2 +1,4 @@
 rootProject.name = 'soteria'
 
+include 'persephone', 'pausanias'
+
