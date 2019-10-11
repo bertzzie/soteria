@@ -5,7 +5,7 @@
   "main": "../dist/index.js",
   "scripts": {
     "build": "../gradle build",
-    "start": "NODE_PATH=dist node ../dist/index.js"
+    "start": "NODE_PATH=dist node ./dist/index.js"
   },
   "author": "Alex Xandra Albert Sim <bertzzie@gmail.com>",
   "license": "MIT",

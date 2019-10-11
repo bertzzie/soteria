@@ -1,3 +1,32 @@
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    ext.kotlinx_version = '0.13.0'
+    ext.gradle_node_version = '1.3.1'
+    ext.web_path = 'dist'
+
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "com.moowork.gradle:gradle-node-plugin:$gradle_node_version"
+    }
+}
+
+apply plugin: 'com.moowork.node'
+apply plugin: 'kotlin2js'
+apply plugin: 'kotlinx-serialization'
+
+dependencies {
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-js', version: kotlin_version
+    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-serialization-runtime-js', version: kotlinx_version
+}
+
 compileKotlin2Js.kotlinOptions {
     outputFile = "${projectDir}/dist/index.js"
     moduleKind = "commonjs"
@@ -8,6 +37,13 @@ clean {
     delete new File("$projectDir/$web_path")
 }
 
+node {
+    version = '10.16.3'
+    npmVersion = '6.9.0'
+    download = true
+}
+
+assemble.dependsOn npm_install
 build.doLast {
     configurations.compile.each { File file ->
         copy {
