@@ -3,7 +3,8 @@ version: '3.7'
 services:
   pausanias:
     build:
-
+      context: ./pausanias
+      target: development
     environment:
       - NODE_PATH=/services/pausanias
     command: node index.js

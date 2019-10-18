@@ -1,7 +1,8 @@
 FROM node:10.16.3-alpine AS development
 
-RUN mkdir /services/pausanias \
- && chown node:node /services/pausanias
+RUN mkdir /services \
+  && mkdir /services/pausanias \
+  && chown node:node /services/pausanias
 
 USER node
 
